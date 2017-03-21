@@ -22,3 +22,5 @@ class UsrVenderController < ApplicationController
   end
 
 end
+
+
