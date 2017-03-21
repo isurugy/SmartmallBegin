@@ -11,11 +11,9 @@ Rails.application.routes.draw do
 
   get 'buyer/destroy'
 
-  get 'usr_vender/registration'
+  resources :usr_vender
 
-  get 'usr_vender/index'
-
-  root 'usr#index'
+  root 'usr_vender#index'
   # get 'usr/index'
   #
   # get 'usr/register'
@@ -39,6 +37,9 @@ Rails.application.routes.draw do
     get '/usr/index' => "usr#index"
     get '/usr/register' => "usr#register"
   end
+
+  #resourceful route for usr_roles controller
+  resources :usr_roles
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

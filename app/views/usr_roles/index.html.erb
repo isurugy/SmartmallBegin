@@ -1,0 +1,12 @@
+<div class="container" >
+  <h1>All Roles</h1>
+  <hr>
+  <% @roles.each do |role|%>
+      <div>
+        <h4><%= role.id %> . <%= link_to role.role_name, usr_role_path(role) %></h4>
+      </div>
+      <div>
+        <!--<p><%= role.description %></p>-->
+      </div>
+  <% end %>
+</div>

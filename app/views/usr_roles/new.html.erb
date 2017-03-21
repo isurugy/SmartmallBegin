@@ -1,0 +1,44 @@
+<div class="form">
+  <h1>Add new Role</h1><br>
+
+  <hr>
+
+  <%= form_for(@role) do |m| %>
+
+      <%= m.label(:role_name) %>
+      <%= m.text_field(:role_name, {:placeholder => "Enter role name",:class => 'form-control'})%><br>
+
+      <%= m.label(:description)%>
+      <%= m.text_area(:description, {:placeholder => "Enter small description",:class => 'form-control'}) %><br>
+
+      <%= fields_for(@role_permissions) do |rp| %>
+          <div>
+            <%= rp.label(:choose_permissions)%><br/>
+            <%= collection_select(:usr_permissions, :id, @all_permissions, :id, :permission_name, {}, {:multiple => true,:class => 'form-control'})%>
+          </div>
+      <% end %>
+
+      <% @all_permissions.each do |rp|%>
+          <div>
+            <h5><%= rp.permission_name %></h5>
+
+      <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+            <%= fields_for(@role_permissions) do |m| %>
+                <%= m.select :value,[['Hide','hide'],['Read only','readonly'], ['Edit','edit']]%>
+            <%end%>
+
+      <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+          </div>
+      <% end %>
+
+
+
+      <br/>
+
+      <%= m.submit "Create Role", class: "btn btn-success" %>
+
+  <% end %>
+
+
+</div>

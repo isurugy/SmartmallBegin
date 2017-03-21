@@ -3,6 +3,10 @@ class UsrContact < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   mount_uploader :image, UsrContactUploader
 
+  #creating many to many relationship with usr_roles table
+  has_many :usr_contact_roles
+  has_many :usr_roles, through: :usr_contact_roles
+
   # validations for sing in
   validates :name, :presence => true
   devise :database_authenticatable, :registerable,

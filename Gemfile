@@ -48,9 +48,17 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+#Gem for postgress database
+gem 'pg'
+
+#This gem should add since turbolinks errors
+gem 'coffee-script-source', '1.8.0'
+
 gem 'devise'
 
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'pg'
+
 gem 'bootstrap-sass'
+
+gem 'bcrypt', '~> 3.1.7'

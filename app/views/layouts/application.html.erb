@@ -6,11 +6,18 @@
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
   <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' %>
+
   <%= javascript_include_tag 'https://code.jquery.com/ui/1.12.1/jquery-ui.js' %>
   <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %>
+
   <%= stylesheet_link_tag    'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'%>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -32,12 +39,19 @@
         <li><a href="#contact">Contact</a></li>
         <li><%= link_to "Register Items"%></li>
         <li><%= link_to "All Items" %></li>
-        <li><%= link_to "Sell", usr_vender_registration_path%></li>
+        <li><%= link_to "Sell", new_usr_vender_path %></li>
       </ul>
+
+      <ul class="nav navbar-nav">
+        <li ><%= link_to "All roles", usr_roles_path %></li>
+      </ul>
+
+
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Login", new_usr_contact_session_path , :class=>'glyphicon glyphicon-log-in'%></li>
         <li><%= link_to "Sign up", new_usr_contact_registration_path , :class=>'glyphicon glyphicon-user'%></li>
         <li><%= link_to "Sign out", destroy_usr_contact_session_path, method: :delete%></li>
+        <li><%= link_to "Create Role", new_usr_role_path %></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
