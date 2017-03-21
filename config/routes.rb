@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'buyer/index'
+
+  get 'buyer/new'
+
+  get 'buyer/create'
+
+  get 'buyer/edit'
+
+  get 'buyer/update'
+
+  get 'buyer/destroy'
+
   get 'usr_vender/registration'
 
   get 'usr_vender/index'
@@ -14,7 +26,7 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :usr_contacts, :controllers => { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :usr_contacts, :controllers => { registrations: 'registrations' }
   #devise_for :contacts
   # devise_scope :contacts do
   #   #@request.env["devise.mapping"] = Devise.mappings[:users]

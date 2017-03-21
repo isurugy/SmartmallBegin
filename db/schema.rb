@@ -10,23 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321035319) do
+ActiveRecord::Schema.define(version: 20170320051803) do
 
-  create_table "usr_branches", force: :cascade do |t|
-    t.string   "address"
-    t.integer  "usr_vender_property_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["usr_vender_property_id"], name: "index_usr_branches_on_usr_vender_property_id"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "price"
+    t.string   "color"
+    t.string   "brand"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "usr_buyers", force: :cascade do |t|
+    t.string   "addressLine1"
+    t.string   "addressLine2"
+    t.string   "addressLine3"
+    t.string   "city"
+    t.integer  "zipCode"
+    t.string   "country"
+    t.date     "dob"
+    t.date     "anniversary"
+    t.integer  "usr_contact_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "usr_contact_venders", force: :cascade do |t|
-    t.integer  "UsrContact_id"
-    t.integer  "UsrVenderProperty_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["UsrContact_id"], name: "index_usr_contact_venders_on_UsrContact_id"
-    t.index ["UsrVenderProperty_id"], name: "index_usr_contact_venders_on_UsrVenderProperty_id"
+    t.integer  "usr_contacts_id"
+    t.integer  "usr_vender_properties_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "usr_contacts", force: :cascade do |t|
@@ -42,18 +59,18 @@ ActiveRecord::Schema.define(version: 20170321035319) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "image"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "provider"
-    t.string   "uid"
-    t.index ["confirmation_token"], name: "index_usr_contacts_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_usr_contacts_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_usr_contacts_on_reset_password_token", unique: true
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "image"
+    t.index ["email"], name: "index_usr_contacts_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_usr_contacts_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "usr_vender_properties", force: :cascade do |t|
