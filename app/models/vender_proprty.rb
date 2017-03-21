@@ -1,0 +1,2 @@
+class VenderProprty < ApplicationRecord
+end
