@@ -1,0 +1,91 @@
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                document.getElementById("blah").style.display = 'block';
+                document.getElementById("uploadarea").style.color = "white";
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(400)
+                    .height(200);
+                document.getElementById("imagedragtxt").style.display = 'none';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    var imageLoader = document.getElementById('post_image');
+    imageLoader.addEventListener('change', handleImage, false);
+
+    function handleImage(e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            $('.uploader img').attr('src',event.target.result);
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+</script>
+<style>
+  .uploader {
+    position:relative;
+    overflow:hidden;
+    width:auto;
+    height:200px;
+    background:#f3f3f3;
+    border:2px dashed #e8e8e8;
+  }
+
+  #post_image{
+    position:absolute;
+    width:300px;
+    height:400px;
+    top:-50px;
+    left:0;
+    z-index:2;
+    opacity:0;
+    cursor:pointer;
+  }
+
+  .uploader img{
+    position:absolute;
+    width:302px;
+    height:352px;
+    top:-1px;
+    left:-1px;
+    z-index:1;
+    border:none;
+  }
+</style>
+
+<h3>Seller details</h3>
+<%= form_for :post, url: usr_vender_index_path do |f| %>
+    <p>
+      <%=f.label :Shop_Name %><br>
+      <%=f.text_field :name,{:class => 'form-control'} %>
+    </p>
+
+    <p>
+      <%=f.label :Specified_Area %><br>
+      <%=f.text_field :price,{:class => 'form-control'} %>
+    </p>
+
+    <p>
+      <%=f.label :Contact_No %><br>
+      <%=f.text_field :color,{:class => 'form-control'} %>
+    </p>
+
+    <div id="uploadarea" class="uploader" onclick="$('#post_image').click()">
+      <div id="imagedragtxt"> click here or drag here your images for preview and set item picture </div>
+      <input type="file" name="image"  id="filePhoto" onchange="readURL(this)"  style="display: none"/>
+      <%= f.file_field :image, :onchange=>'readURL(this)' %>
+      <img id="blah" src="#" alt="image" style="display: none;"/>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit({:value=>'Register',:class => 'btn btn-primary'})%>
+    </div>
+<% end %>

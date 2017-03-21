@@ -1,0 +1,8 @@
+<div class = "well">
+  <%= form_for @buyer, url: {action: "create"} do |e| %>
+      <%= render partial: "buyer/form" , locals: {:f => e} %>
+
+      <%= e.submit "Save", class: "btn-block btn-primary" %>
+  <% end %>
+</div>
+
