@@ -61,4 +61,8 @@ gem 'mini_magick'
 
 gem 'bootstrap-sass'
 
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
+
+gem 'bcrypt-ruby', :require => 'bcrypt'
+
+gem 'attr_encrypted', '~> 3.0', '>= 3.0.3'

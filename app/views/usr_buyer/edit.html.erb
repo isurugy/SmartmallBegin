@@ -1,0 +1,8 @@
+<div class = "well">
+  <%= form_for @buyer, url: usr_buyer_update_path, :method => :POST do |e| %>
+      <%= render partial: "usr_buyer/form", locals: {:f => e} %>
+
+      <%= e.submit "Save", class: "btn-block btn-primary" %>
+  <% end %>
+</div>
+

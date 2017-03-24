@@ -10,23 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321080114) do
+ActiveRecord::Schema.define(version: 20170324111119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "usr_buyers", force: :cascade do |t|
-    t.string   "addressLine1"
-    t.string   "addressLine2"
-    t.string   "addressLine3"
+  create_table "usr_buyer_billing_adderesses", force: :cascade do |t|
+    t.string   "address_line1"
+    t.string   "address_line2"
     t.string   "city"
-    t.integer  "zipCode"
+    t.integer  "zip_code"
     t.string   "country"
+    t.integer  "usr_buyer_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["usr_buyer_id"], name: "index_usr_buyer_billing_adderesses_on_usr_buyer_id", using: :btree
+  end
+
+  create_table "usr_buyer_delivery_adderesses", force: :cascade do |t|
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "city"
+    t.integer  "zip_code"
+    t.string   "country"
+    t.integer  "usr_buyer_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["usr_buyer_id"], name: "index_usr_buyer_delivery_adderesses_on_usr_buyer_id", using: :btree
+  end
+
+  create_table "usr_buyer_payment_methods", force: :cascade do |t|
+    t.string   "card_name"
+    t.string   "encrypted_card_number"
+    t.string   "encrypted_cvv"
+    t.string   "encrypted_expiry_date"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "usr_buyers", force: :cascade do |t|
     t.date     "dob"
     t.date     "anniversary"
-    t.integer  "usr_contact_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "gender"
+    t.string   "contact_number"
+    t.integer  "usr_contact_id"
+    t.string   "user_image"
+    t.index ["usr_contact_id"], name: "index_usr_buyers_on_usr_contact_id", using: :btree
   end
 
   create_table "usr_contact_roles", force: :cascade do |t|
@@ -103,4 +136,7 @@ ActiveRecord::Schema.define(version: 20170321080114) do
     t.datetime "updated_at",    null: false
   end
 
+  add_foreign_key "usr_buyer_billing_adderesses", "usr_buyers"
+  add_foreign_key "usr_buyer_delivery_adderesses", "usr_buyers"
+  add_foreign_key "usr_buyers", "usr_contacts"
 end

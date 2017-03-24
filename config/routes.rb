@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  get 'buyer/index'
+  resources :usr_buyer_payment_methods
+  get 'usr_buyer/index'
 
-  get 'buyer/new'
+  get 'usr_buyer/new'
 
-  get 'buyer/create'
+  post 'usr_buyer/create'
 
-  get 'buyer/edit'
+  get 'usr_buyer/edit'
 
-  get 'buyer/update'
+  post 'usr_buyer/update'
 
-  get 'buyer/destroy'
+  post 'usr_buyer/destroy'
 
   resources :usr_vender
 
@@ -19,9 +20,6 @@ Rails.application.routes.draw do
   # get 'usr/register'
 
   #devise_for :usr_contacts
-
-
-
 
 
   devise_for :usr_contacts, :controllers => { registrations: 'registrations' }

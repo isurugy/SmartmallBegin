@@ -7,8 +7,8 @@
 efault: &default
   adapter: postgresql
   encoding: UTF8
-  username: shamila
-  password: Sha123
+  username: isuru.gayashan
+  password: treset123
   pool: 5
   timeout: 5000
 

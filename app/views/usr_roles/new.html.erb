@@ -3,7 +3,7 @@
 
   <hr>
 
-  <%= form_for(@role) do |m| %>
+  <%= form_for @role, url usr_roles_create_path do |m| %>
 
       <%= m.label(:role_name) %>
       <%= m.text_field(:role_name, {:placeholder => "Enter role name",:class => 'form-control'})%><br>
@@ -18,19 +18,6 @@
           </div>
       <% end %>
 
-      <% @all_permissions.each do |rp|%>
-          <div>
-            <h5><%= rp.permission_name %></h5>
-
-      <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
-
-            <%= fields_for(@role_permissions) do |m| %>
-                <%= m.select :value,[['Hide','hide'],['Read only','readonly'], ['Edit','edit']]%>
-            <%end%>
-
-      <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
-          </div>
-      <% end %>
 
 
 

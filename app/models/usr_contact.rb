@@ -1,8 +1,9 @@
-class UsrContact < ApplicationRecord
+class
+UsrContact < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   mount_uploader :image, UsrContactUploader
-
+  has_one :usr_buyer
   #creating many to many relationship with usr_roles table
   has_many :usr_contact_roles
   has_many :usr_roles, through: :usr_contact_roles
@@ -18,5 +19,5 @@ class UsrContact < ApplicationRecord
     end
   end
   has_and_belongs_to_many :usr_vender_properties
-  has_one :usr_buyer
+
 end
